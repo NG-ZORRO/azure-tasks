@@ -1,0 +1,60 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Microsoft/azure-pipelines-task-lib/master/tasks.schema.json",
+  "id": "93b7ff02-c8d4-449e-9c52-e6dc445e2827",
+  "name": "PushBuildsAndRelease",
+  "friendlyName": "Push Builds and Release",
+  "description": "Automatically push builds and release",
+  "helpMarkDown": "",
+  "category": "Utility",
+  "author": "Hsuan Lee",
+  "version": {
+    "Major": 0,
+    "Minor": 2,
+    "Patch": 0
+  },
+  "instanceNameFormat": "Push Builds and Release",
+  "inputs": [
+    {
+      "name": "gitHubRepository",
+      "type": "string",
+      "label": "Github Repository",
+      "defaultValue": "$(Build.Repository.Name)",
+      "required": true,
+      "helpMarkDown": "NG-ZORRO/ng-zorro-antd"
+    },
+    {
+      "name": "buildsGitHubRepository",
+      "type": "string",
+      "label": "Github Repository",
+      "defaultValue": "$(Build.Repository.Name)-builds",
+      "required": true,
+      "helpMarkDown": "NG-ZORRO/ng-zorro-antd-builds"
+    },
+    {
+      "name": "buildsDir",
+      "type": "string",
+      "label": "Builds Dir Path",
+      "defaultValue": "$(System.DefaultWorkingDirectory)/build/lib",
+      "required": true,
+      "helpMarkDown": "eg: /builds"
+    },
+    {
+      "name": "gitHubConnection",
+      "type": "connectedService:github",
+      "label": "GitHub connection (OAuth or PAT)",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown": "Specify the name of the GitHub service connection."
+    }
+  ],
+  "execution": {
+    "Node10": {
+      "target": "index.js"
+    }
+  },
+  "messages": {
+    "InvalidGitHubEndpoint": "Invalid GitHub service endpoint: %s.",
+    "InvalidEndpointAuthScheme": "Invalid GitHub service connection scheme: %s. Only OAuth and GitHub personal access token connections are allowed.",
+    "InvalidSourceBranch": "Invalid source branch: %s. The task only run on `refs/heads/master`"
+  }
+}

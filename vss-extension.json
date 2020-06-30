@@ -1,0 +1,36 @@
+{
+  "manifestVersion": 1,
+  "id": "push-builds-and-release-task",
+  "name": "Push Builds and Release",
+  "version": "0.2.0",
+  "publisher": "HsuanLee",
+  "targets": [
+    {
+      "id": "Microsoft.VisualStudio.Services"
+    }
+  ],
+  "description": "Automatically push builds and release",
+  "categories": [
+    "Azure Pipelines"
+  ],
+  "icons": {
+    "default": "images/extension-icon.png"
+  },
+  "files": [
+    {
+      "path": "pushBuildsAndReleaseTask"
+    }
+  ],
+  "contributions": [
+    {
+      "id": "custom-build-release-task",
+      "type": "ms.vss-distributed-task.task",
+      "targets": [
+        "ms.vss-distributed-task.tasks"
+      ],
+      "properties": {
+        "name": "pushBuildsAndReleaseTask"
+      }
+    }
+  ]
+}

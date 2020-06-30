@@ -1,0 +1,27 @@
+{
+  "name": "azure-tasks",
+  "version": "0.2.0",
+  "description": "Azure DevOps Tasks for NG-ZORRO",
+  "scripts": {
+    "tfx:create": "tfx extension create --manifest-globs vss-extension.json --rev-version",
+    "tfx:publish": "tfx extension publish --share-with ng-zorro",
+    "clean": "rimraf *.vsix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NG-ZORRO/azure-tasks.git"
+  },
+  "keywords": [
+    "azure",
+    "tasks"
+  ],
+  "author": "Hsuan Lee",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/NG-ZORRO/azure-tasks/issues"
+  },
+  "homepage": "https://github.com/NG-ZORRO/azure-tasks#readme",
+  "devDependencies": {
+    "rimraf": "^3.0.0"
+  }
+}
