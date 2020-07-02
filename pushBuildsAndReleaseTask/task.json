@@ -9,8 +9,8 @@
   "author": "Hsuan Lee",
   "version": {
     "Major": 0,
-    "Minor": 2,
-    "Patch": 0
+    "Minor": 3,
+    "Patch": 3
   },
   "instanceNameFormat": "Push Builds and Release",
   "inputs": [

@@ -8,6 +8,16 @@ export class Github {
         })
     }
 
+    public async getLatestCommit(owner: string, repo: string) {
+        return this.rest.repos.listCommits({
+            owner,
+            repo
+        }).then(res => {
+            return res.data[0];
+        }).catch(err => {
+            throw new Error(err);
+        })
+    }
     public async getCommit(owner: string, repo: string, commit: string) {
         return this.rest.git.getCommit({
             owner,
@@ -20,11 +30,13 @@ export class Github {
         })
     }
 
-    public async release(owner: string, repo: string, tagName: string) {
+    public async release(owner: string, repo: string, tagName: string, body?: string) {
         return this.rest.repos.createRelease({
             owner,
             repo,
-            tag_name: tagName
+            tag_name: tagName,
+            name: tagName,
+            body
         })
     }
 }

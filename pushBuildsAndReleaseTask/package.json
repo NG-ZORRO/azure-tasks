@@ -7,7 +7,7 @@
     "build": "tsc"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "@octokit/rest": "^18.0.0",
     "azure-pipelines-task-lib": "^2.9.6",

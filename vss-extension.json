@@ -2,7 +2,7 @@
   "manifestVersion": 1,
   "id": "push-builds-and-release-task",
   "name": "Push Builds and Release",
-  "version": "0.2.0",
+  "version": "0.3.3",
   "publisher": "HsuanLee",
   "targets": [
     {

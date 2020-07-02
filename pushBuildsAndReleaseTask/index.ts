@@ -75,10 +75,23 @@ class Main {
 
         git.stageAllChanges();
         git.createNewCommit(`${sha} ${message}`);
-        git.pushBranchToRemote('master', true);
+        const pushed = git.pushBranchToRemote('master', true);
 
+        if (!pushed) {
+            const errorMessage = `Push the builds to ${buildsGitHubRepository} failed`;
+            tl.setResult(tl.TaskResult.Failed, errorMessage)
+            throw new Error(errorMessage);
+        }
         const { owner: buildsOwner, repo: buildsRepo } = parseRepository(buildsGitHubRepository!);
-        gh.release(buildsOwner, buildsRepo, `${version}+${sha}`)
+
+        const latestCommit = await gh.getLatestCommit(buildsOwner, buildsRepo);
+
+        gh.release(
+          buildsOwner,
+          buildsRepo,
+          `${version}+${sha}`,
+          `[${message}](https://github.com/${gitHubRepository}/commit/${sha}) ${sha}\n\`github:${buildsGitHubRepository}#${latestCommit.sha}\``
+        )
           .then(res => {
               if (res.data) {
                   tl.setResult(tl.TaskResult.Succeeded, res.data.tag_name);
@@ -90,6 +103,7 @@ class Main {
         })
 
     }
+
 }
 
 Main.run();
